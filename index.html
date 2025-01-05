@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>BDD Advanced</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/syntax_monokai.css" />
+    <link rel="stylesheet" href="assets/css/theme-dev.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <script src="assets/js/main.js" type="module"></script>
+
+    <script src="assets/js/wrappDefault.js" type="module"></script>
+  </head>
+  <body class="has-toc">
+    <header>
+      <div>
+        <h1>BDD Advanced</h1>
+
+        <p>Requêtes avancées avec fonctions et jointures.</p>
+      </div>
+    </header>
+
+    <nav id="toc-nav">
+      <ol>
+        <li>
+          <a href="#mise-en-place">Mise en place</a>
+          <ol>
+            <li>
+              <a href="#%EF%B8%8F-comment-proc%C3%A9der">🖥️ Comment procéder</a>
+            </li>
+            <li>
+              <a href="#-premi%C3%A8res-requ%C3%AAtes">🤴 Premières requêtes</a>
+            </li>
+            <li>
+              <a href="#%EF%B8%8F-et-on-complexifie-">🧙‍♂️ Et on complexifie !</a>
+              <ol>
+                <li>
+                  <a href="#f%C3%A9licitations-tu-es-arriv%C3%A9-au-bout-"
+                    >Félicitations, tu es arrivé au bout !</a
+                  >
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </nav>
+
+    <main id="main">
+      <img
+        class="main-image"
+        src="assets/img/background.jpg"
+        alt="BDD Advanced"
+      />
+
+      <div class="widget-clone">
+        <label for="input-clone"><i class="bi bi-code-slash"></i> Code</label>
+        <div class="input-group">
+          <input
+            type="text"
+            readonly=""
+            value="git clone https://github.com/PPaillard/sqladvancedworkshop"
+            id="input-clone"
+          />
+          <button
+            id="copy-button"
+            class="copy-button"
+            aria-label="Copy to clipboard"
+          >
+            <span class="icon-copy">
+              <i class="bi-clipboard"></i>
+            </span>
+            <span class="icon-check">
+              Copied
+              <i class="bi-check-lg"></i>
+            </span>
+          </button>
+        </div>
+        <div class="text-end">
+          <a
+            href="https://github.com/PPaillard/sqladvancedworkshop"
+            target="_blank"
+          >
+            <small
+              >https://github.com/PPaillard/sqladvancedworkshop
+              <i class="bi bi-box-arrow-up-right"></i
+            ></small>
+          </a>
+        </div>
+      </div>
+
+      <section class="no-background">
+        <h1 id="mise-en-place">Mise en place</h1>
+        <p class="alert-info">
+          Clone ce dépôt grâce au lien donné ci-dessus ⬆
+          <a href="#input-clone"><i class="bi bi-code-slash"></i>&nbsp;Code</a>.
+        </p>
+        <p>
+          Le dossier que tu viens de cloner contient un fichier
+          <code class="language-plaintext highlighter-rouge">database.sql</code
+          >.
+        </p>
+        <p>
+          Ouvre ton terminal à la racine de ce dossier
+          <code class="language-plaintext highlighter-rouge"
+            >cd sqladvancedworkshop</code
+          >
+          et lance la commande suivante en remplaçant
+          <code class="language-plaintext highlighter-rouge"
+            >&lt;your_name&gt;</code
+          >
+          par ton véritable identifiant de connexion à Mysql :
+        </p>
+        <div class="language-bash highlighter-rouge">
+          <div class="highlight">
+            <pre
+              class="highlight"
+            ><code>mysql <span class="nt">-u</span> &lt;your_name&gt; <span class="nt">-p</span> &lt; database.sql
+</code></pre>
+          </div>
+        </div>
+        <p>
+          Connecte-toi ensuite à Mysql et vérifie que la BDD
+          <code class="language-plaintext highlighter-rouge">kaamelott</code> a
+          bien été créée et contient les tables <strong>Kingdom</strong>,
+          <strong>Role</strong>, et <strong>Person</strong> avec quelques
+          enregistrements.
+        </p>
+      </section>
+
+      <section>
+        <h2 id="️-comment-procéder">🖥️ Comment procéder</h2>
+        <p>
+          Voici les structures des tables que tu viens de créer et sur
+          lesquelles t’appuyer pour la réalisation de cet atelier.
+        </p>
+        <p class="text-center">
+          <img src="assets/img/modelisation.png" alt="" />
+        </p>
+        <p>
+          En racine du dossier que tu viens de cloner se trouve également le
+          fichier
+          <code class="language-plaintext highlighter-rouge">workshop.sql</code
+          >.<br />
+          Tu pourras t’en servir pour écrire les requêtes au fur et à mesure de
+          l’atelier. Pour les exécuter facilement dans ton terminal, utilise la
+          commande suivante :
+        </p>
+        <div class="language-bash highlighter-rouge">
+          <div class="highlight">
+            <pre
+              class="highlight"
+            ><code>mysql <span class="nt">-u</span> &lt;your_name&gt; <span class="nt">-p</span> &lt;db_name&gt; <span class="nt">-t</span> &lt; workshop.sql
+</code></pre>
+          </div>
+        </div>
+        <p class="alert-info">
+          Pense à remplacer
+          <code class="language-plaintext highlighter-rouge"
+            >&lt;your_name&gt;</code
+          >
+          et
+          <code class="language-plaintext highlighter-rouge"
+            >&lt;db_name&gt;</code
+          >
+          par tes informations de connexion à Mysql.<br />
+          L’option
+          <code class="language-plaintext highlighter-rouge">-t</code> permet
+          quant à elle d’avoir une jolie présentation.
+        </p>
+      </section>
+
+      <section>
+        <h2 id="-premières-requêtes">🤴 Premières requêtes</h2>
+        <p>
+          Ecrire les requêtes qui permettent d’afficher respectivement les
+          informations suivante :
+        </p>
+        <ol>
+          <li>
+            <p>Le prénom, nom et âge des personnages</p>
+          </li>
+          <li>
+            <p>
+              Le prénom, nom des personnages ainsi que leur royaume, uniquement
+              pour ceux étant reliés à un royaume
+            </p>
+          </li>
+          <li>
+            <p>La même chose en incluant tous les personnages</p>
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h2 id="️-et-on-complexifie-">🧙‍♂️ Et on complexifie !</h2>
+        <p>De la même manière, écrire les requêtes permettant d’afficher :</p>
+        <ol>
+          <li>
+            <p>La moyenne de l’âge des personnages</p>
+          </li>
+          <li>
+            <p>
+              La moyenne de tous les personnages n’ayant pas le rôle de magicien
+            </p>
+          </li>
+          <li>
+            <p>
+              Le nombre de personnage par royaume (inclure les royaumes n’ayant
+              pas de personnage)
+            </p>
+          </li>
+          <li>
+            <p>La moyenne de l’âge par rôle</p>
+          </li>
+          <li>
+            <p>
+              La liste de tous les personnages avec leur rôle et royaume
+              éventuels
+            </p>
+          </li>
+          <li>
+            <p>La liste des royaumes ayant au moins 2 sujets</p>
+          </li>
+        </ol>
+        <h3 class="text-center" id="félicitations-tu-es-arrivé-au-bout-">
+          Félicitations, tu es arrivé au bout !
+        </h3>
+        <p class="text-center">
+          <img src="assets/img/giphy.gif" alt="" />
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
