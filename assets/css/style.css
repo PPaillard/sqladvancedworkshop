@@ -513,3 +513,7 @@ body > main .table-responsive {
 .text-center {
   text-align: center;
 }
+.remarquable{
+  text-decoration: underline;
+  font-weight: bold;
+}
